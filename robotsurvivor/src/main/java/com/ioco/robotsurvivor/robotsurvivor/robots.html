@@ -1,0 +1,32 @@
+<!-- src/main/resources/templates/robots.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Robots List</title>
+</head>
+<body>
+
+<h2>Robots List</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="robot : ${robots}">
+        <td th:text="${robot.id}"></td>
+        <td th:text="${robot.name}"></td>
+        <td th:text="${robot.location}"></td>
+        <td th:text="${robot.category}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
