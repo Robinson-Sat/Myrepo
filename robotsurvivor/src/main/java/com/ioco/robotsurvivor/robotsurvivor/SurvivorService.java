@@ -1,7 +1,9 @@
 package com.ioco.robotsurvivor.robotsurvivor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +39,33 @@ public class SurvivorService {
         }
 
         return null; // Handle not found case
+    }
+
+    public double calculateInfectedPercentage() {
+        List<Survivor> allSurvivors = survivorRepository.findAll();
+        long totalSurvivors = allSurvivors.size();
+
+        if (totalSurvivors == 0) {
+            return 0.0; // Avoid division by zero
+        }
+
+        long infectedSurvivors = allSurvivors.stream()
+                .filter(Survivor::isInfected)
+                .count();
+
+        return ((double) infectedSurvivors / totalSurvivors) * 100.0;
+    }
+
+    public double calculateNonInfectedPercentage() {
+        return 100.0 - calculateInfectedPercentage();
+    }
+
+    public List<Survivor> getInfectedList() {
+        return survivorRepository.findByIsInfected(true);
+    }
+
+    public List<Survivor> getNonInfectedList() {
+        return survivorRepository.findByIsInfected(false);
     }
 
     public void deleteSurvivor(Long id) {
