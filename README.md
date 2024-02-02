@@ -42,3 +42,4 @@ Run the main class (contains the main method) to start the Spring Boot applicati
 6. Accessing Endpoints
 Use tools like Postman or cURL to interact with the API endpoints.
 API Base URL: http://localhost:8081/api/survivors
+http://localhost:8081/api/robotData To call the Robot CPU API
