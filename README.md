@@ -6,7 +6,7 @@ This Spring Boot project implements an API for managing robot survivors in a pos
 
 ## Prerequisites
 
-- Java Development Kit (JDK) version 11 or higher
+- Java Development Kit (JDK) version 17 or higher
 - PostgreSQL database installed
 
 ## Getting Started
@@ -41,4 +41,4 @@ Run the main class (contains the main method) to start the Spring Boot applicati
 
 6. Accessing Endpoints
 Use tools like Postman or cURL to interact with the API endpoints.
-API Base URL: http://localhost:8080/api/survivors
+API Base URL: http://localhost:8081/api/survivors
