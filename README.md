@@ -26,7 +26,55 @@ git clone https://github.com/your-username/robot-survivor-api.git
 
 3. Database Setup
 Install PostgreSQL on your machine if not already installed.
-Create a database for the project (e.g., robot_db).
+## Database Initialization
+
+### Database Information
+
+- **Database Name:** robot_db
+
+### Survivors Table
+
+#### Fields
+
+- `id` (Serial, Primary Key)
+- `name` (String, Not Null)
+- `age` (Integer, Not Null)
+- `gender` (String, Not Null)
+- `latitude` (Double Precision, Not Null)
+- `longitude` (Double Precision, Not Null)
+- `has_water` (Boolean, Not Null)
+- `has_food` (Boolean, Not Null)
+- `has_medication` (Boolean, Not Null)
+- `has_ammunition` (Boolean, Not Null)
+- `is_infected` (Boolean, Not Null)
+- `infection_counter` (Integer, Default 0)
+
+### Database Initialization Script
+
+To initialize the database with the necessary tables and schema, execute the following SQL script:
+
+```sql
+-- Create Database if not exists
+CREATE DATABASE IF NOT EXISTS robot_db;
+
+-- Use the created database
+USE robot_db;
+
+-- Create Survivors Table
+CREATE TABLE IF NOT EXISTS survivors (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    latitude DOUBLE PRECISION NOT NULL,
+    longitude DOUBLE PRECISION NOT NULL,
+    has_water BOOLEAN NOT NULL,
+    has_food BOOLEAN NOT NULL,
+    has_medication BOOLEAN NOT NULL,
+    has_ammunition BOOLEAN NOT NULL,
+    is_infected BOOLEAN NOT NULL,
+    infection_counter INTEGER DEFAULT 0
+);
 
 4. Database Configuration
 In the src/main/resources/application.properties file, update the following properties with your database connection details:
