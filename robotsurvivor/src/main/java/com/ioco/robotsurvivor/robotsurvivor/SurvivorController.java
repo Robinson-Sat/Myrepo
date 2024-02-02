@@ -44,6 +44,29 @@ public class SurvivorController {
         }
     }
 
+    @GetMapping("/infectedPercentage")
+    public ResponseEntity<Double> getInfectedPercentage() {
+        double infectedPercentage = survivorService.calculateInfectedPercentage();
+        return ResponseEntity.ok(infectedPercentage);
+    }
+
+    @GetMapping("/nonInfectedPercentage")
+    public ResponseEntity<Double> getNonInfectedPercentage() {
+        double nonInfectedPercentage = survivorService.calculateNonInfectedPercentage();
+        return ResponseEntity.ok(nonInfectedPercentage);
+    }
+
+    @GetMapping("/infectedList")
+    public ResponseEntity<List<Survivor>> getInfectedList() {
+        List<Survivor> infectedList = survivorService.getInfectedList();
+        return ResponseEntity.ok(infectedList);
+    }
+
+    @GetMapping("/nonInfectedList")
+    public ResponseEntity<List<Survivor>> getNonInfectedList() {
+        List<Survivor> nonInfectedList = survivorService.getNonInfectedList();
+        return ResponseEntity.ok(nonInfectedList);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSurvivor(@PathVariable Long id) {
         survivorService.deleteSurvivor(id);
