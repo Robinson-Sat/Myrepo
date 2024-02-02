@@ -68,6 +68,13 @@ public class SurvivorService {
         return survivorRepository.findByIsInfected(false);
     }
 
+    public void markInfected(Survivor survivor) {
+        if (survivor.getInfectionCounter() >= 3 && !survivor.isInfected()) {
+            survivor.setInfected(true);
+            survivorRepository.save(survivor); // Update the database
+        }
+    }
+
     public void deleteSurvivor(Long id) {
         survivorRepository.deleteById(id);
     }
