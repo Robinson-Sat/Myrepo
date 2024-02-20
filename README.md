@@ -30,24 +30,7 @@ Install PostgreSQL on your machine if not already installed.
 
 ### Database Information
 
-- **Database Name:** robot_db
-
-### Survivors Table
-
-#### Fields
-
-- `id` (Serial, Primary Key)
-- `name` (String, Not Null)
-- `age` (Integer, Not Null)
-- `gender` (String, Not Null)
-- `latitude` (Double Precision, Not Null)
-- `longitude` (Double Precision, Not Null)
-- `has_water` (Boolean, Not Null)
-- `has_food` (Boolean, Not Null)
-- `has_medication` (Boolean, Not Null)
-- `has_ammunition` (Boolean, Not Null)
-- `is_infected` (Boolean, Not Null)
-- `infection_counter` (Integer, Default 0)
+- **Database Name:** SurvivorResource_db
 
 ### Database Initialization Script
 
@@ -55,43 +38,96 @@ To initialize the database with the necessary tables and schema, execute the fol
 
 ```sql
 -- Create Database if not exists
-CREATE DATABASE IF NOT EXISTS robot_db;
+CREATE DATABASE IF NOT EXISTS SurvivorResource_db;
 
--- Use the created database
-USE robot_db;
-
--- Create Survivors Table
-CREATE TABLE IF NOT EXISTS survivors (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    age INTEGER NOT NULL,
-    gender VARCHAR(10) NOT NULL,
-    latitude DOUBLE PRECISION NOT NULL,
-    longitude DOUBLE PRECISION NOT NULL,
-    has_water BOOLEAN NOT NULL,
-    has_food BOOLEAN NOT NULL,
-    has_medication BOOLEAN NOT NULL,
-    has_ammunition BOOLEAN NOT NULL,
-    is_infected BOOLEAN NOT NULL,
-    infection_counter INTEGER DEFAULT 0
-);
-
-4. Database Configuration
-In the src/main/resources/application.properties file, update the following properties with your database connection details:
-spring.datasource.url=jdbc:postgresql://localhost:5432/robot_db
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-
-5. Run the Project
+4. Run the Project
 Open the project in your preferred IDE (e.g., IntelliJ IDEA).
 Run the main class (contains the main method) to start the Spring Boot application
 
-6. Accessing Endpoints
+5. Accessing Endpoints
 Use tools like Postman or cURL to interact with the API endpoints.
-API Base URL: http://localhost:8081/api/survivors
-http://localhost:8081/api/robotData To call the Robot CPU API(Your Zscaler Internet Security has to be turned off ,otherwise the organisational firewall blocks this request)
-Infected Percentage: http://localhost:8081/api/survivors/infectedPercentage
-Non-Infected Percentage: http://localhost:8081/api/survivors/nonInfectedPercentage
-Infected List: http://localhost:8081/api/survivors/infectedList
-Non-Infected List: http://localhost:8081/api/survivors/nonInfectedList
+
+GET
+getAllSurvivors
+http://localhost:8085/api/survivors
+
+
+GET
+getSurvivorByID
+http://localhost:8085/api/survivors/1
+﻿
+
+POST
+createSurvivor
+http://localhost:8085/api/survivors
+﻿
+
+Body
+raw (json)
+View More
+json
+{
+    "name": "Zombie with Inventory",
+    "age": 25,
+    "gender": "Female",
+    "latitude": 12.34,
+    "longitude": 57.78,
+    "infectionCounter": 1,
+    "inventory": {
+        "water": true,
+        "food": true,
+        "medication": false,
+        "ammunition": true
+    }
+}
+PUT
+updateSurvivorLocation
+http://localhost:8085/api/survivors/updateSurvivorLocation/1
+﻿
+
+Body
+raw (json)
+View More
+json
+{
+  "latitude": 12.34,
+  "longitude": 34.78
+}
+PUT
+updateInfectionStatus
+http://localhost:8085/api/survivors/updateInfectionStatus/1
+﻿
+
+Body
+raw (json)
+View More
+json
+{
+  "infectionCounter": 4
+}
+GET
+reportInfectedList
+http://localhost:8085/api/survivors/infectedList
+﻿
+
+GET
+reportNonInfectedList
+http://localhost:8085/api/survivors/nonInfectedList
+﻿
+
+GET
+calculateNonInfectedPercentage
+http://localhost:8085/api/survivors/nonInfectedPercentage
+﻿
+
+GET
+calculateInfectedPercentage
+http://localhost:8085/api/survivors/infectedPercentage
+﻿
+
+GET
+RobotList
+http://localhost:8085/api/ListOfRobots(Turn off Zscaler Internet Security)
+﻿
+
+
