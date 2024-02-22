@@ -7,7 +7,6 @@ public class Robot {
 
     private String model;
     private String serialNumber;
-    //private ZonedDateTime manufacturedDate;
     private String manufacturedDate;
     private Category category;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
