@@ -127,7 +127,9 @@ http://localhost:8085/api/survivors/infectedPercentage
 
 GET
 RobotList
-http://localhost:8085/api/ListOfRobots(Turn off Zscaler Internet Security)
+http://localhost:8085/api/robotData(Turn off Zscaler Internet Security)
+http://localhost:8085/api/flyingRobots
+http://localhost:8085/api/landRobots
 ﻿
 
 
